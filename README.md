@@ -1,6 +1,8 @@
 # XSS-scripts
 Vários scripts voltados a exploração da vulnerabilidade XSS
 
+OBS > SEMPREEEE ENCONDEEEE O SCRIPT
+
 # XSS-Html
 
 // Basic payload
