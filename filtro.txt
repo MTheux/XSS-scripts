@@ -1,0 +1,6 @@
+<?php
+    if(isset($_GET ))
+?>
+
+comando para iniciar o lab
+php -S 0.0.0.0:8888 -t . 
