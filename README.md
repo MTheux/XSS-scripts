@@ -3,6 +3,8 @@ Vários scripts voltados a exploração da vulnerabilidade XSS
 
 OBS > SEMPREEEE ENCONDEEEE O SCRIPT
 
+Posivel BYPASS - Trocar o (.) por > %2f
+
 # XSS-Html
 
 // Basic payload
