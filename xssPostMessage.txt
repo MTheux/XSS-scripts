@@ -5,7 +5,7 @@
 
 <script>
 document.getElementById('btn').onclick = function(e){
-    window.poc = window.open('https://ciweb4.homologacao.extranet.caixa/sso/');
+    window.poc = window.open('url');
     setTimeout(function(){
         window.poc.postMessage(
             {
