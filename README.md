@@ -1,3 +1,4 @@
+<img width="1080" height="1080" alt="xss_cover" src="https://github.com/user-attachments/assets/c819e1d6-7465-464e-a553-d19d8cee3022" />
 
 # XSS-SCRIPTS v2.0 — Cross-Site Scripting Arsenal
 
