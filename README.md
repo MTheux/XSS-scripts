@@ -1,4 +1,3 @@
-![XSS-Scripts Cover](<img width="1080" height="1080" alt="xss_cover" src="https://github.com/user-attachments/assets/91d32f53-38a6-427f-a3cf-4eb08d9a231a" />)
 
 # XSS-SCRIPTS v2.0 — Cross-Site Scripting Arsenal
 
